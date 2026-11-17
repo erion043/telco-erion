@@ -23,9 +23,11 @@ class Customer(BaseModel):
 
 app = FastAPI()
 
+
 @app.get("/")
 def welcome_user():
-    return {"welcome":"welocme to my api :)"}
+    return {"welcome": "welocme to my api :)"}
+
 
 @app.post("/predict")
 def predict(customer: Customer):
@@ -39,9 +41,9 @@ def predict_schema():
     """Describe the expected fields for /predict."""
     return Customer.model_json_schema()
 
+
 @app.get("/health")
 def show_status():
     """Check health service"""
 
-    
     return {"status": "all good :)"}

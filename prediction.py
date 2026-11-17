@@ -27,7 +27,7 @@ def make_prediction(**kwargs: float) -> float:
         args = [kwargs[feature] for feature in FEATURE_ORDER]
     except KeyError as e:
         raise ValueError(f"Missing feature: {e.args[0]}") from e
-    
+
     # Format features for scaling
     features = pd.DataFrame([args], columns=FEATURE_ORDER)
 
