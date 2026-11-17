@@ -99,10 +99,10 @@ payload = {
 }
 
 try:
-    with st.spinner("Asking the model..."):
-        probability = fetch_prediction(payload)["prediction"]
-except requests.RequestException as e:
-    st.error(f"Could not reach the API. Is it running?\n\n{e}")
+    with st.spinner("Asking the Azure Function..."):
+        probability = float(fetch_prediction_from_production(payload).text)
+except (requests.RequestException, RuntimeError, ValueError) as e:
+    st.error(f"Could not get a prediction from the Azure Function.\n\n{e}")
     st.stop()
 
 label, colour = risk_label(probability)
